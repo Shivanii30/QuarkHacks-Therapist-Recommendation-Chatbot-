@@ -8,7 +8,7 @@ def send_message(message):
   
     payload = {
         "prompt": {
-            "text": "Give me a response like a therapist and say that you are a therapist chatbot for the following: " + message
+            "text": "Give me a response like a therapist for the following: " + message
         }
     }
     try:
