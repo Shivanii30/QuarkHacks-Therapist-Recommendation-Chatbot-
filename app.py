@@ -40,8 +40,9 @@ def main():
             chat_container.text_area("Bot:", bot_response)
 
     elif option == "About":
-        st.markdown("### About")
-        st.write("This is a simple health chatbot built with Streamlit and the Gemini API.")
+        st.markdown("### About 🌟")
+        
+        st.write("Welcome to Serenity Squad, your trusted mental wellness companion! \n\nWe're Team 3 - Shivani, Apoorva, Shreyash, Ronak, and Khushi - a dedicated group committed to promoting mental health awareness through innovation. Serenity Squad is our creation, a cutting-edge chatbot designed to offer guidance, encouragement, and resources for mental well-being. Our mission is simple: to break the stigma surrounding mental health and empower individuals to prioritize their mental wellness.")
 
 
 if __name__ == "__main__":
