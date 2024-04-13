@@ -5,10 +5,9 @@ BASE_URL = "https://generativelanguage.googleapis.com/v1beta3/models/text-bison-
 
 def send_message(message):
     url = BASE_URL
-  
     payload = {
         "prompt": {
-            "text": "Give me a response like a therapist for the following: " + message
+            "text": "Respond to the following query like a therapist would: " + message
         }
     }
     try:
@@ -28,16 +27,23 @@ def main():
     if option == "Chat":
         st.markdown("### Chat with the Mental Health Chatbot")
 
-        chat_container = st.empty()
+        if "messages" not in st.session_state:
+            st.session_state.messages = []
 
-        user_input = st.text_input("You:", "")
+        for message in st.session_state.messages:
+            with st.chat_message(message["role"]):
+                st.markdown(message["content"])
 
-        if st.button("Send"):
-            chat_container.text_area("You:", user_input)
+    # Accept user input
+        if prompt := st.chat_input("What is up?"):
+            st.session_state.messages.append({"role": "user", "content": prompt})
+            with st.chat_message("user"):
+                st.markdown(prompt)
 
-            bot_response = send_message(user_input)
-
-            chat_container.text_area("Bot:", bot_response)
+            with st.chat_message("assistant"):
+                response = send_message(prompt)
+                st.write(response)
+            st.session_state.messages.append({"role": "assistant", "content": response})
 
     elif option == "About":
         st.markdown("### About")
